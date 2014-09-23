@@ -4,7 +4,7 @@
 #       instead of the owner :(
 
 import os,sys
-import win32security
+import win32security #@UnresolvedImport - http://stackoverflow.com/questions/16140948/is-there-a-way-to-suppress-unresolved-imports-in-eclipse-in-a-pydev-project
 
 
 def count_owners(owner_dict, rootdir, object_list):
