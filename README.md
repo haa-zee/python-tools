@@ -1,4 +1,4 @@
 python-tools
 ============
 
-Little utilities for me, written in Python (2.7)
+Little utilities for me (but could be usable for you ;) ), written in Python (2.7)
