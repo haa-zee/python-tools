@@ -16,17 +16,18 @@ def count_owners(owner_dict, rootdir, object_list):
                 )
         
             owner=security_descriptor.GetSecurityDescriptorOwner()
-        except Exception:
+        except Exception as exc:
             # Mostly: no permission to access this object
             owner='*'
+            print exc
             
         try:
             owner_name=win32security.LookupAccountSid(None,owner)
-        except Exception:
+        except Exception as exc:
             # It is an unknown owner
             owner_name=str(owner)
             # Just for debug
-            print rootdir, name, owner_name
+            print os.path.join(rootdir, name), owner_name
 
         if owner_name in owner_dict:
             owner_dict[owner_name]+=1
@@ -36,7 +37,14 @@ def count_owners(owner_dict, rootdir, object_list):
 
 
 owners={}
-root_dir=sys.argv[1] if len(sys.argv)>1 else 'C:\\'
+
+
+# To convert names returned by os.walk, os.listdir etc. to utf-8, you must give utf-8 encoded arguments to them.
+# see: http://stackoverflow.com/questions/6425824/filename-formatting-in-python-under-windows
+
+root_dir=u""+sys.argv[1] if len(sys.argv)>1 else u'C:\\'
+
+
 print root_dir
 for root, dirs, files in os.walk(root_dir):
     count_owners(owners, root, dirs)
