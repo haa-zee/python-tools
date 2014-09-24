@@ -21,7 +21,7 @@ the packet will go out on interface which has lower metrics'''
         raw_input("Press <Enter> to continue...")
         
     ip_broadcast='255.255.255.255'  # It works on linux, but not on Windows!
-    
+
 
 
 so=socket(AF_INET, SOCK_DGRAM)
@@ -32,3 +32,4 @@ so.sendto(magic, (ip_broadcast,9))
 
 print "WOL sent to MAC %s broadcast address %s"%(mac_addr, ip_broadcast)
 raw_input("Press <Enter> to continue...")
+
