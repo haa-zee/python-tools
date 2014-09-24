@@ -29,3 +29,6 @@ magic="\xff"*6+mac_addr.replace(':','').decode('hex')*16
 so.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 so.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 so.sendto(magic, (ip_broadcast,9))
+
+print "WOL sent to MAC %s broadcast address %s"%(mac_addr, ip_broadcast)
+raw_input("Press <Enter> to continue...")
