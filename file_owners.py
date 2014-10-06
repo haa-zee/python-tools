@@ -39,10 +39,15 @@ def count_owners(owner_dict, rootdir, object_list):
 owners={}
 
 
-# To convert names returned by os.walk, os.listdir etc. to utf-8, you must give utf-8 encoded arguments to them.
+# To convert names returned by os.walk, os.listdir etc. to unicode(actually mbcs -> sys.getfilesystemencoding()),
+# you must give unicode encoded arguments to them.
 # see: http://stackoverflow.com/questions/6425824/filename-formatting-in-python-under-windows
 
-root_dir=u""+sys.argv[1] if len(sys.argv)>1 else u'C:\\'
+# @Bug: you can't pass unicode encoded runtime arguments to this script and I don't plan to correct this.
+# It seems to be a horrible thing ;)  http://code.activestate.com/recipes/572200/
+
+root_dir=unicode(sys.argv[1]) if len(sys.argv)>1 else u'C:\\'
+
 
 
 print root_dir
